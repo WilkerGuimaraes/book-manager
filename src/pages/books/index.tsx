@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { Header } from "../../_components/header";
 import { useBooks } from "@/_data-access/use-books";
 import { BookCard } from "./components/book-card";
+import { Pagination } from "./components/pagination";
 
 export function Books() {
   const [searchParams] = useSearchParams();
@@ -23,6 +24,15 @@ export function Books() {
           ))}
         </div>
       </div>
+
+      {booksResponse && (
+        <Pagination
+          books={booksResponse.data}
+          page={page}
+          items={booksResponse.items}
+          pages={booksResponse.pages}
+        />
+      )}
     </div>
   );
 }

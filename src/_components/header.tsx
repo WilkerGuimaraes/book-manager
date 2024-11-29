@@ -11,7 +11,7 @@ import {
 
 export function Header() {
   return (
-    <div className="m-8 flex items-center justify-between">
+    <div className="mx-8 mt-8 flex items-center justify-between">
       <h1 className="text-2xl font-medium">Book Manager</h1>
 
       <div className="flex items-center">
@@ -20,7 +20,7 @@ export function Header() {
             <MenuIcon size={24} />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>Options</DropdownMenuLabel>
+            <DropdownMenuLabel className="text-lg">Options</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Button variant={"ghost"} className="gap-2 text-lg">

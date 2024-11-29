@@ -11,7 +11,7 @@ export function useBooks(page: number) {
         {
           params: {
             _page: page,
-            per_page: 10,
+            _per_page: 10,
           },
         },
       );
