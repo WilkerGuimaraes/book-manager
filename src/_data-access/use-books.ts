@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export function useBooks(page: number) {
-  const { data: booksResponse } = useQuery<BooksResponse>({
+  const { data: booksResponse, isLoading } = useQuery<BooksResponse>({
     queryKey: ["get-books", page],
     queryFn: async () => {
       const response = await axios.get<BooksResponse>(
@@ -20,5 +20,5 @@ export function useBooks(page: number) {
     },
   });
 
-  return { booksResponse };
+  return { booksResponse, isLoading };
 }

@@ -11,7 +11,7 @@ import {
 
 export function Header() {
   return (
-    <div className="mx-8 mt-8 flex items-center justify-between">
+    <div className="flex items-center justify-between">
       <h1 className="text-2xl font-medium">Book Manager</h1>
 
       <div className="flex items-center">

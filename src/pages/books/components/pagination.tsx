@@ -59,7 +59,7 @@ export function Pagination({ books, page, items, pages }: PaginationProps) {
   }
 
   return (
-    <div className="mx-16 mb-8 flex flex-col flex-wrap items-center justify-between gap-4 text-sm md:flex-row">
+    <div className="flex flex-col flex-wrap items-center justify-between gap-4 text-sm md:flex-row">
       <span className="text-lg font-medium">
         Show {books.length} of {items} Books
       </span>

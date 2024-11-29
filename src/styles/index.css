@@ -5,12 +5,10 @@
 html,
 body {
   @apply antialiased;
-  @apply h-full;
 }
 
 body {
-  @apply bg-gray-100;
-  @apply flex items-center justify-center;
+  @apply flex min-h-screen items-center justify-center bg-gray-100;
 }
 
 @layer base {
