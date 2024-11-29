@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BookFormSchema, bookFormSchema } from "../schema/new-book";
+import { useCreateBook } from "@/_actions/create-book/use-create-book";
+import { BookFormSchema, bookFormSchema } from "@/_actions/create-book/schema";
 import { Button } from "@/_components/ui/button";
 import {
   SheetContent,
@@ -8,7 +9,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/_components/ui/sheet";
-import { useCreateBook } from "@/_data-access/use-create-book";
 import { toast } from "sonner";
 
 interface CreateNewBookProps {
