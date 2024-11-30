@@ -10,9 +10,18 @@ import {
 import { CreateNewBook } from "@/pages/books/components/create-new-book";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
+import { UsersList } from "@/pages/books/components/users-list";
 
 export function Header() {
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
+  const [activeSheetContent, setActiveSheetContent] = useState<
+    "newBook" | "usersList" | null
+  >(null);
+
+  const closeSheet = () => {
+    setSheetIsOpen(false);
+    setActiveSheetContent(null);
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -27,12 +36,26 @@ export function Header() {
             <DropdownMenuContent>
               <DropdownMenuLabel className="text-lg">Options</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="gap-2 text-lg font-semibold">
-                <UserRoundCogIcon size={24} />
-                Users List
-              </DropdownMenuItem>
               <SheetTrigger asChild>
-                <DropdownMenuItem className="gap-2 text-lg font-semibold">
+                <DropdownMenuItem
+                  className="gap-2 text-lg font-semibold"
+                  onClick={() => {
+                    setActiveSheetContent("usersList");
+                    setSheetIsOpen(true);
+                  }}
+                >
+                  <UserRoundCogIcon size={24} />
+                  Users List
+                </DropdownMenuItem>
+              </SheetTrigger>
+              <SheetTrigger asChild>
+                <DropdownMenuItem
+                  className="gap-2 text-lg font-semibold"
+                  onClick={() => {
+                    setActiveSheetContent("newBook");
+                    setSheetIsOpen(true);
+                  }}
+                >
                   <BookPlusIcon size={24} />
                   New Book
                 </DropdownMenuItem>
@@ -40,7 +63,11 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <CreateNewBook onSubmitSuccess={() => setSheetIsOpen(false)} />
+          {activeSheetContent === "usersList" && <UsersList />}
+
+          {activeSheetContent === "newBook" && (
+            <CreateNewBook onSubmitSuccess={closeSheet} />
+          )}
         </Sheet>
       </div>
     </div>
