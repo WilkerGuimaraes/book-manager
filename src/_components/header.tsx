@@ -1,4 +1,9 @@
-import { BookPlusIcon, MenuIcon, UserRoundCogIcon } from "lucide-react";
+import {
+  BookPlusIcon,
+  LogOutIcon,
+  MenuIcon,
+  UserRoundCogIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +16,7 @@ import { CreateNewBook } from "@/pages/books/components/create-new-book";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
 import { UsersList } from "@/pages/books/components/users-list";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
@@ -22,6 +28,14 @@ export function Header() {
     setSheetIsOpen(false);
     setActiveSheetContent(null);
   };
+
+  const router = useNavigate();
+
+  function logout() {
+    localStorage.removeItem("user");
+
+    router("/login");
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -60,6 +74,14 @@ export function Header() {
                   New Book
                 </DropdownMenuItem>
               </SheetTrigger>
+
+              <DropdownMenuItem
+                className="gap-2 text-lg font-semibold"
+                onClick={logout}
+              >
+                <LogOutIcon size={24} />
+                Sair
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
