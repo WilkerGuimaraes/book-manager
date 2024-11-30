@@ -9,11 +9,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "./pages/login";
 import { Books } from "./pages/books";
 import { queryClient } from "./_lib/react-query";
+import { Register } from "./pages/register";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/books",
