@@ -12,7 +12,7 @@ export function useRegisterUser() {
       await axios.post("http://localhost:3333/users", parsedData);
     },
     onSuccess: () => {
-      navigate("/login");
+      navigate("/");
     },
   });
 

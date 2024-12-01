@@ -13,7 +13,7 @@ import { Register } from "./pages/register";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
   {

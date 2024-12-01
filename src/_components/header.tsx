@@ -52,7 +52,7 @@ export function Header() {
   function logout() {
     localStorage.removeItem("user");
 
-    router("/login");
+    router("/");
   }
 
   return (

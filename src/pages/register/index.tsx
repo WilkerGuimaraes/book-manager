@@ -58,7 +58,7 @@ export function Register() {
         <p className="mb-4">
           Já tem uma conta?{" "}
           <span className="font-semibold text-blue-500 hover:underline">
-            <a href="/login">Entrar</a>
+            <a href="/">Entrar</a>
           </span>
         </p>
       </div>
