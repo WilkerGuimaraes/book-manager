@@ -22,12 +22,12 @@ export function UsersList() {
     <SheetContent>
       <SheetHeader>
         <SheetTitle className="text-2xl font-bold">
-          Lista de usuários cadastrados
+          Usuários cadastrados
         </SheetTitle>
         <SheetDescription></SheetDescription>
       </SheetHeader>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 overflow-auto">
         <div className="space-y-4">
           <h3 className="text-xl font-semibold">Administradores</h3>
           <ul>
