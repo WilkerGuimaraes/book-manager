@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/_components/ui/dialog";
 import { DeleteBookDialogContent } from "./delete-dialog-content";
+import { useEffect, useState } from "react";
 
 interface BookCardProps {
   data: {
@@ -19,6 +20,20 @@ interface BookCardProps {
 }
 
 export function BookCard({ data }: BookCardProps) {
+  const [isAdminRole, setIsAdminRole] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      const parsedUser = JSON.parse(user);
+
+      if (parsedUser.role === "admin") {
+        setIsAdminRole(true);
+      }
+    }
+  }, []);
+
   return (
     <AlertDialog>
       <Dialog>
@@ -44,14 +59,18 @@ export function BookCard({ data }: BookCardProps) {
             <p>{data.description}</p>
 
             <div className="flex justify-end">
-              <AlertDialogTrigger asChild>
-                <Button className="bg-red-700 hover:bg-red-600">Deletar</Button>
-              </AlertDialogTrigger>
+              {isAdminRole && (
+                <AlertDialogTrigger asChild>
+                  <Button className="bg-red-700 hover:bg-red-600">
+                    Deletar
+                  </Button>
+                </AlertDialogTrigger>
+              )}
             </div>
           </div>
         </DialogContent>
 
-        <DeleteBookDialogContent bookId={data.id} />
+        {isAdminRole && <DeleteBookDialogContent bookId={data.id} />}
       </Dialog>
     </AlertDialog>
   );

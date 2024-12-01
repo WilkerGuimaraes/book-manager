@@ -14,7 +14,7 @@ import {
 } from "./ui/dropdown-menu";
 import { CreateNewBook } from "@/pages/books/components/create-new-book";
 import { Sheet, SheetTrigger } from "./ui/sheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UsersList } from "@/pages/books/components/users-list";
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +23,24 @@ export function Header() {
   const [activeSheetContent, setActiveSheetContent] = useState<
     "newBook" | "usersList" | null
   >(null);
+  const [isAdminRole, setIsAdminRole] = useState(false);
+  const [isInitialAdmin, setIsInitialAdmin] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      const parsedUser = JSON.parse(user);
+
+      if (parsedUser.role === "admin") {
+        setIsAdminRole(true);
+      }
+
+      if (parsedUser.id === "bf2af7e6-aeb5-4201-b96c-f93721083364") {
+        setIsInitialAdmin(true);
+      }
+    }
+  }, []);
 
   const closeSheet = () => {
     setSheetIsOpen(false);
@@ -48,32 +66,38 @@ export function Header() {
               <MenuIcon size={24} />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel className="text-lg">Options</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-lg">Opções</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <SheetTrigger asChild>
-                <DropdownMenuItem
-                  className="gap-2 text-lg font-semibold"
-                  onClick={() => {
-                    setActiveSheetContent("usersList");
-                    setSheetIsOpen(true);
-                  }}
-                >
-                  <UserRoundCogIcon size={24} />
-                  Users List
-                </DropdownMenuItem>
-              </SheetTrigger>
-              <SheetTrigger asChild>
-                <DropdownMenuItem
-                  className="gap-2 text-lg font-semibold"
-                  onClick={() => {
-                    setActiveSheetContent("newBook");
-                    setSheetIsOpen(true);
-                  }}
-                >
-                  <BookPlusIcon size={24} />
-                  New Book
-                </DropdownMenuItem>
-              </SheetTrigger>
+
+              {isInitialAdmin && (
+                <SheetTrigger asChild>
+                  <DropdownMenuItem
+                    className="gap-2 text-lg font-semibold"
+                    onClick={() => {
+                      setActiveSheetContent("usersList");
+                      setSheetIsOpen(true);
+                    }}
+                  >
+                    <UserRoundCogIcon size={24} />
+                    Lista de Usuários
+                  </DropdownMenuItem>
+                </SheetTrigger>
+              )}
+
+              {isAdminRole && (
+                <SheetTrigger asChild>
+                  <DropdownMenuItem
+                    className="gap-2 text-lg font-semibold"
+                    onClick={() => {
+                      setActiveSheetContent("newBook");
+                      setSheetIsOpen(true);
+                    }}
+                  >
+                    <BookPlusIcon size={24} />
+                    Novo Livro
+                  </DropdownMenuItem>
+                </SheetTrigger>
+              )}
 
               <DropdownMenuItem
                 className="gap-2 text-lg font-semibold"
