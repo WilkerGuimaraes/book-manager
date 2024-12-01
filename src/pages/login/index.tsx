@@ -21,7 +21,7 @@ export function Login() {
   return (
     <main className="flex flex-col items-center justify-center gap-8">
       <h1 className="text-4xl font-bold">Login</h1>
-      <div className="flex min-h-[400px] min-w-[30vw] flex-col items-center justify-around rounded-md bg-white">
+      <div className="flex min-h-[400px] min-w-[30vw] flex-col items-center justify-between rounded-md bg-white">
         <FormProvider {...createUserForm}>
           <form
             onSubmit={handleSubmit(handleLoginUser)}
@@ -45,7 +45,7 @@ export function Login() {
           </form>
         </FormProvider>
 
-        <p>
+        <p className="mb-6">
           Não tem uma conta?{" "}
           <span className="font-semibold text-blue-500 hover:underline">
             <a href="/register">Cadastre-se</a>
