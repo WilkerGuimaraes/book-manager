@@ -10,6 +10,7 @@ import { Login } from "./pages/login";
 import { Books } from "./pages/books";
 import { queryClient } from "./_lib/react-query";
 import { Register } from "./pages/register";
+import { ProtectedRoute } from "./pages/books/components/protected-route";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/books",
-    element: <Books />,
+    element: (
+      <ProtectedRoute>
+        <Books />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
